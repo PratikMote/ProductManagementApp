@@ -1,0 +1,23 @@
+<h3 style="color: yellowgreen; font-size: 1.2em">Category Area</h3>
+
+<input [(ngModel)]="category.name" placeholder="Category Name" />
+<button (click)="save()">{{ editingId ? "Update" : "Add" }}</button>
+<button *ngIf="editingId" (click)="reset()">Cancel</button>
+
+<div class="table-wrapper">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let c of categories">
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>
+        <button (click)="edit(c)" class="action-btn">Edit</button>
+        <button (click)="delete(c.id)" class="action-btn">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

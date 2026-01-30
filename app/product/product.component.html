@@ -1,0 +1,40 @@
+<h3 style="color: green">Product Master</h3>
+
+<input [(ngModel)]="product.name" placeholder="Product Name" />
+
+<select [(ngModel)]="product.categoryId">
+  <option [ngValue]="null">Select Category</option>
+  <option *ngFor="let c of categories" [ngValue]="c.id">
+    {{ c.name }}
+  </option>
+</select>
+
+<button (click)="save()">{{ editingId ? "Update" : "Add" }}</button>
+<button *ngIf="editingId" (click)="reset()">Cancel</button>
+<div class="table-wrapper">
+  <table>
+    <tr>
+      <th>ProductId</th>
+      <th>ProductName</th>
+      <th>CategoryId</th>
+      <th>CategoryName</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let p of products">
+      <td>{{ p.productId }}</td>
+      <td>{{ p.productName }}</td>
+      <td>{{ p.categoryId }}</td>
+      <td>{{ p.categoryName }}</td>
+      <td>
+        <button (click)="edit(p)" class="action-btn">Edit</button>
+        <button (click)="delete(p.productId)" class="action-btn">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br />
+
+<button (click)="prev()">Prev</button>
+<span> Page {{ page }} </span>
+<button (click)="next()">Next</button>
